@@ -5,16 +5,15 @@ Bot de trading con arquitectura limpia y separación de responsabilidades.
 ## 📁 Estructura
 
 ```
-botCeibe/
-├── config/
+config/
 │   └── strategy.json          # Parámetros de configuración (monto, RSI, stop_loss, etc.)
-├── engine/
+engine/
 │   └── trading_logic.py       # Motor de trading (lee strategy.json)
-├── shared/
+shared/
 │   └── state.json             # Estado compartido (escrito por el motor, leído por el dashboard)
-├── dashboard/
+dashboard/
 │   └── app.py                 # Dashboard Streamlit (solo lectura de state.json)
-└── main.py                    # Punto de entrada del bot
+main.py                        # Punto de entrada del bot
 ```
 
 ## 🚀 Uso
@@ -22,15 +21,15 @@ botCeibe/
 ### Ejecutar el Motor
 
 ```bash
-cd /home/lorenzo/Escritorio/proyect/MultiBot
-python3 botCeibe/main.py
+cd /home/lorenzo/Escritorio/proyect/botCeibe
+python3 main.py
 ```
 
 ### Ejecutar el Dashboard
 
 ```bash
-cd /home/lorenzo/Escritorio/proyect/MultiBot
-streamlit run botCeibe/dashboard/app.py
+cd /home/lorenzo/Escritorio/proyect/botCeibe
+streamlit run dashboard/app.py
 ```
 
 ## ⚙️ Configuración

@@ -10,7 +10,7 @@ from pathlib import Path
 import sys
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from storage import connect
+from engine.storage import connect
 
 
 def seed_once() -> None:

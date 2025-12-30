@@ -1,3 +1,0 @@
-currency,rsi,ema200_distance,volume_status,triple_green,conditions_met,missing_condition,heat_score,buy_the_dip,heat_components,zone,last_update,in_persecution
-XRP/BTC,,,,False,0,,0,False,"{'rsi_raw': 0.0, 'ema_raw': 0.0, 'vol_raw': 0.0, 'bonus_raw': 0.0, 'rsi': 0, 'ema': 0, 'vol': 0, 'bonus': 0, 'total': 0}",muy_fria,2025-12-29T17:54:44.109354,False
-XRP/ETH,,,,False,0,,0,False,"{'rsi_raw': 0.0, 'ema_raw': 0.0, 'vol_raw': 0.0, 'bonus_raw': 0.0, 'rsi': 0, 'ema': 0, 'vol': 0, 'bonus': 0, 'total': 0}",muy_fria,2025-12-29T17:54:47.045524,False

@@ -11,7 +11,7 @@ from threading import Thread
 
 # Agregar el directorio raíz al path
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from storage import save_market_data, save_portfolio_snapshot, connect
+from engine.storage import save_market_data, save_portfolio_snapshot, connect
 
 def writer_thread():
     """Simula escrituras continuas del motor"""

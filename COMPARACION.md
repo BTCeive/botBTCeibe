@@ -2,21 +2,21 @@
 
 ## ✅ Archivos Completamente Adaptados
 
-### 1. `core.py` → `botCeibe/engine/trading_logic.py`
+### 1. `core.py` → `engine/trading_logic.py`
 - ✅ Toda la lógica de trading adaptada
 - ✅ Lee configuración desde `strategy.json` en lugar de `config.py`
 - ✅ Rutas corregidas (ROOT_DIR para bitácora, rutas relativas para config/state)
 - ✅ Base de datos usa ruta absoluta
 - **Estado**: COMPLETO - `core.py` puede eliminarse
 
-### 2. `main.py` → `botCeibe/main.py`
+### 2. `main.py` → `main.py`
 - ✅ Bucle principal adaptado
 - ✅ Inicialización mejorada (detección de posiciones, gestión BNB)
 - ✅ Snapshots del portfolio agregados
 - ✅ Intervalos configurables desde `strategy.json`
 - **Estado**: COMPLETO - `main.py` antiguo puede eliminarse
 
-### 3. `dashboard.py` → `botCeibe/dashboard/app.py`
+### 3. `dashboard.py` → `dashboard/app.py`
 - ✅ Lectura de `shared/state.json` (en lugar de `shared_state.json`)
 - ✅ Manejo de errores de lectura mejorado
 - ✅ Bitácora agregada
@@ -24,20 +24,20 @@
 - **Estado**: COMPLETO - `dashboard.py` puede eliminarse
 
 ### 4. `run_bot.py`
-- ⚠️ Similar a `botCeibe/main.py` pero más simple
+- ⚠️ Similar a `main.py` pero más simple
 - ❌ No tiene detección de posiciones
 - ❌ No tiene gestión de BNB
 - ❌ No tiene snapshots
-- **Estado**: OBSOLETO - Puede eliminarse (usar `botCeibe/main.py`)
+- **Estado**: OBSOLETO - Puede eliminarse (usar `main.py`)
 
 ## 📁 Archivos Compartidos (NO eliminar)
 
 Estos archivos son compartidos y se usan desde ambos sistemas:
-- `config.py` - Configuración de Binance API (se usa desde botCeibe)
-- `database.py` - Base de datos (se usa desde botCeibe)
-- `vault.py` - Gestión de activos (se usa desde botCeibe)
-- `router.py` - Gestión de pares (se usa desde botCeibe)
-- `signals.py` - Indicadores técnicos (se usa desde botCeibe)
+- `config.py` - Configuración de Binance API
+- `database.py` - Base de datos
+- `vault.py` - Gestión de activos
+- `router.py` - Gestión de pares
+- `signals.py` - Indicadores técnicos
 
 ## 🔧 Correcciones Realizadas
 
@@ -58,11 +58,11 @@ Estos archivos son compartidos y se usan desde ambos sistemas:
 ## 🗑️ Archivos a Eliminar
 
 Una vez verificado que todo funciona:
-1. `core.py` - Reemplazado por `botCeibe/engine/trading_logic.py`
-2. `main.py` (raíz) - Reemplazado por `botCeibe/main.py`
-3. `dashboard.py` - Reemplazado por `botCeibe/dashboard/app.py`
-4. `run_bot.py` - Obsoleto, usar `botCeibe/main.py`
-5. `shared_state.json` (raíz) - Reemplazado por `botCeibe/shared/state.json`
+1. `core.py` - Reemplazado por `engine/trading_logic.py`
+2. `main.py` (raíz) - Consolidado en `main.py`
+3. `dashboard.py` - Reemplazado por `dashboard/app.py`
+4. `run_bot.py` - Obsoleto, usar `main.py`
+5. `shared_state.json` (raíz) - Reemplazado por `shared/state.json`
 
 ## ⚠️ Archivos a Mantener
 

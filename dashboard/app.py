@@ -24,7 +24,7 @@ if root_dir_str not in sys.path:
     sys.path.insert(0, root_dir_str)
 
 # Importar storage tras asegurar ROOT_DIR en sys.path
-from storage import DB_PATH as STORAGE_DB_PATH
+from engine.storage import DB_PATH as STORAGE_DB_PATH
 from bot_config import DB_PATH as CONFIG_DB_PATH
 
 # Rutas de datos (alineadas con el motor)

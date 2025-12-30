@@ -58,7 +58,7 @@ from bot_config import BINANCE_API_KEY, BINANCE_SECRET_KEY, BINANCE_TESTNET, BIN
 
 # Integración SQLite de almacenamiento
 try:
-    from storage import save_market_data, save_portfolio_snapshot, init_db
+    from engine.storage import save_market_data, save_portfolio_snapshot, init_db
     init_db()
     logger.info("Storage SQLite inicializado (bot_data.db)")
 except Exception as e:
@@ -1807,6 +1807,7 @@ Thumbs.db
             
             # Monitorear todos los trades activos (sin límite de max_slots)
             active_trades = self.db.get_all_active_trades()
+            self.fast_exit_mode = len(active_trades) > 0
             
             for trade in active_trades:
                 try:
@@ -1817,6 +1818,13 @@ Thumbs.db
                 except Exception as e:
                     logger.error(f"Error al monitorear trade {trade.get('id')}: {e}")
                 continue
+
+            # Persistir instantánea de trades activos (incluye highest_price) para recuperación tras reinicio
+            try:
+                updated_trades = self.db.get_all_active_trades()
+                await self._save_active_trades(updated_trades)
+            except Exception as e:
+                logger.debug(f"No se pudo persistir active_trades.json: {e}")
         
         except Exception as e:
             logger.error(f"Error en monitor_active_trades: {e}")
@@ -3502,6 +3510,7 @@ Thumbs.db
             self.db.update_highest_price(trade_id, current_price)
             highest_price = current_price
             logger.debug(f"[Slot {slot_id}] Nuevo máximo alcanzado: {current_price:.4f} (anterior: {previous_highest:.4f})")
+            active_trade['highest_price'] = highest_price  # Persistir snapshot en memoria para volcado a JSON
         
         # 1. GESTIÓN DE PÉRDIDAS Y ROTACIÓN
         if -1.5 <= pnl_percent < -0.5:
@@ -3596,7 +3605,8 @@ Thumbs.db
                 return
         
         # 3. ESCANEAR OPORTUNIDADES DE SALTO (solo si no hay problemas)
-        await self._scan_jump_opportunity(slot_id, active_trade)
+        if not getattr(self, 'fast_exit_mode', False):
+            await self._scan_jump_opportunity(slot_id, active_trade)
     
     async def _evaluate_slot(self, slot_id: int, active_trade: Dict[str, Any]):
         """
@@ -5987,18 +5997,21 @@ Thumbs.db
                     except Exception:
                         active_assets = []
 
-                    if not (heat_score >= 90 or currency in active_assets):
+                    is_active_asset = currency in active_assets
+
+                    if not (heat_score >= 90 or is_active_asset):
                         logger.info(f"MODE: CRUCERO reanudado para {currency} (heat: {heat_score})")
                         break
 
-                    # Esperar periodo de persecución (5s)
-                    await asyncio.sleep(5)
+                    # Esperar periodo de persecución (priorizar activos en posición abierta)
+                    poll_interval = 0.5 if is_active_asset else 5
+                    await asyncio.sleep(poll_interval)
                 except asyncio.CancelledError:
                     logger.info(f"Tarea de persecución cancelada para {currency}")
                     break
                 except Exception as e:
                     logger.debug(f"{LOG_TAG} Error intern|o: {e}")
-                    await asyncio.sleep(5)
+                    await asyncio.sleep(poll_interval if 'poll_interval' in locals() else 1)
         finally:
             try:
                 if currency in self.persecution_tasks:
@@ -6496,7 +6509,7 @@ Thumbs.db
             Dict con keys 'hot' (Top 10), 'warm' (11-20), 'cold' (resto)
         """
         try:
-            from storage import get_latest_market_data
+            from engine.storage import get_latest_market_data
             whitelist = self.strategy.get('whitelist', [])
             
             # Obtener heat_score de todos los activos desde SQLite
@@ -6706,6 +6719,18 @@ Thumbs.db
                     # Verificar que el trade existe en la base de datos y está activo
                     db_trade = self.db.get_active_trade(slot_id)
                     if db_trade and db_trade.get('id') == trade_id:
+                        # Fusionar highest_price de ambas fuentes para resiliencia
+                        hp_db = db_trade.get('highest_price', db_trade.get('entry_price', 0))
+                        hp_json = trade_data.get('highest_price', db_trade.get('entry_price', 0))
+                        merged_high = max(hp_db or 0, hp_json or 0)
+                        if merged_high > (hp_db or 0):
+                            try:
+                                self.db.update_highest_price(trade_id, merged_high)
+                                logger.debug(
+                                    f"Trade {trade_id} merge highest_price BD {hp_db:.4f} vs JSON {hp_json:.4f} -> {merged_high:.4f}"
+                                )
+                            except Exception as merge_err:
+                                logger.debug(f"No se pudo fusionar highest_price para trade {trade_id}: {merge_err}")
                         # El trade ya está activo en la BD, no hay nada que hacer
                         recovered_count += 1
                         logger.debug(
@@ -6813,7 +6838,7 @@ Thumbs.db
             
             # 2. RECUPERAR datos persistidos en SQLite para activos que no están en cache
             try:
-                from storage import get_latest_market_data
+                from engine.storage import get_latest_market_data
                 db_entries = get_latest_market_data(limit=50)  # Obtener últimos 50 registros
                 for db_entry in db_entries:
                     dest = db_entry.get('destination')
