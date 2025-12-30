@@ -1,0 +1,421 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #f8f9fa; /* Fondo general claro */
+    --card: #1a1a1a; /* Cajas negras/gris oscuro */
+    --card-alt: #252525; /* Filas alternadas en tablas */
+    --text-card: #ffffff; /* Texto dentro de cajas */
+    --accent-green: #00FF88; /* Verde brillante para señales */
+    --accent-alert: #FF6B35; /* Rojo/Naranja neón para alertas */
+    --accent-hucha: #FFD700; /* Dorado para hucha/ahorros */
+    --muted: #888888;
+}
+
+body {
+    font-family: 'Inter', 'Roboto', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: #111827;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: var(--accent-green);
+    margin-bottom: 30px;
+    font-size: 2.4em;
+    font-weight: 700;
+}
+
+.section {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 20px;
+    color: var(--text-card);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+.section h2 {
+    color: var(--muted);
+    margin-bottom: 18px;
+    font-size: 1.25em;
+    font-weight: 600;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+.metric-box {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 18px;
+    border: 1px solid rgba(255,255,255,0.04);
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--text-card);
+}
+
+.metric-box h4 {
+    color: var(--muted);
+    margin: 0 0 8px 0;
+    font-size: 0.9em;
+}
+
+.metric-box .value {
+    color: var(--accent-green);
+    font-size: 2em;
+    font-weight: 700;
+}
+
+.metric-box .subvalue {
+    color: var(--muted);
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.slots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.slot-box {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,0.04);
+    min-height: 200px;
+    color: var(--text-card);
+}
+
+.slot-box.active {
+    border-color: var(--accent-green);
+    box-shadow: 0 8px 20px rgba(0,255,136,0.06);
+}
+
+.slot-box.inactive {
+    background: rgba(255,255,255,0.02);
+    color: #9CA3AF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.slot-box h3 {
+    margin-bottom: 15px;
+    color: var(--accent-green);
+    font-weight: 700;
+}
+.slot-box .price-info {
+    color: #888;
+    font-size: 0.9em;
+    margin: 5px 0;
+}
+
+.slot-box .pnl {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.slot-box .pnl.positive {
+    color: #00FF88;
+}
+
+.slot-box .pnl.negative {
+    color: #FF4444;
+}
+
+.slot-box .pnl.neutral {
+    color: #888;
+}
+
+.slot-box .date-info {
+    color: #666;
+    font-size: 0.8em;
+    margin-top: 10px;
+}
+
+.two-columns {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+.historial-box {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid rgba(255,255,255,0.04);
+    color: var(--text-card);
+}
+
+.historial-box .event {
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 8px;
+    line-height: 1.6;
+    background: rgba(255,255,255,0.02);
+}
+.radar-list {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.radar-line {
+    padding: 12px;
+    margin: 6px 0;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.02);
+    transition: background-color 0.18s, transform 0.12s;
+}
+
+/* Nuevas clases de Heat Score */
+.heat-herviente {
+    background-color: var(--accent-green);
+    color: #07150a; /* texto oscuro sobre verde brillante */
+    font-weight: 800;
+    box-shadow: 0 6px 16px rgba(0,255,136,0.08);
+}
+
+.heat-muycaliente {
+    background-color: rgba(0,255,136,0.07);
+    color: var(--accent-green);
+    font-weight: 700;
+}
+
+.heat-tibio {
+    background-color: transparent; /* Sin fondo */
+    color: var(--text-card); /* Texto blanco por defecto */
+}
+
+.heat-frio {
+    background-color: transparent;
+    color: var(--accent-alert);
+    font-weight: 700;
+}
+
+/* Señal de sobreexposición y gas crítico */
+.overexposed-alert {
+    background: linear-gradient(90deg, rgba(255,107,53,0.06), rgba(255,107,53,0.02));
+    border-left: 3px solid var(--accent-alert);
+    color: var(--text-card);
+    font-weight: 700;
+}
+
+.gas-critical {
+    background: linear-gradient(90deg, rgba(255,107,53,0.06), rgba(255,107,53,0.02));
+    color: var(--text-card);
+    border-left: 3px solid var(--accent-alert);
+    font-weight: 700;
+}
+
+.hucha-tag {
+    color: var(--accent-hucha);
+    font-weight: 700;
+}
+
+.diversificacion-tag {
+    background: linear-gradient(90deg, rgba(0,255,136,0.04), rgba(0,255,136,0.01));
+    color: var(--accent-green);
+    border-left: 3px solid var(--accent-green);
+    font-weight: 700;
+    padding: 6px 8px;
+    border-radius: 6px;
+}
+
+
+.status-indicator {
+    font-size: 2em;
+    text-align: center;
+}
+
+.loading {
+    text-align: center;
+    color: #888;
+    padding: 40px;
+    font-size: 1.2em;
+}
+
+.loading-small {
+    text-align: center;
+    color: #888;
+    padding: 20px;
+}
+
+.error {
+    background: #FF4444;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.distribution-info {
+    color: #888;
+    padding: 15px;
+    text-align: center;
+}
+
+.distribution-wrapper {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+#distribution-chart-container {
+    flex: 0 0 auto;
+    min-width: 200px;
+    max-width: 300px;
+    position: relative;
+    height: auto;
+}
+
+#distribution-chart-container canvas {
+    max-width: 100%;
+    height: auto !important;
+}
+
+#distribution-table-container {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.distribution-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+}
+
+.distribution-table .color-indicator {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    border-radius: 3px;
+    margin-right: 8px;
+    vertical-align: middle;
+    border: 1px solid #333;
+}
+
+.distribution-table thead {
+    background-color: rgba(255,255,255,0.02);
+    color: var(--accent-green);
+}
+
+.distribution-table th {
+    padding: 12px 8px;
+    text-align: left;
+    font-weight: 700;
+    border-bottom: 2px solid rgba(255,255,255,0.04);
+}
+
+.distribution-table td {
+    padding: 10px 8px;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+.distribution-table tbody tr:nth-child(even) {
+    background: rgba(255,255,255,0.02);
+}
+
+.distribution-table tbody tr:nth-child(odd) {
+    background: var(--card-alt);
+}
+
+.distribution-table tbody tr:hover {
+    background-color: rgba(255,255,255,0.04);
+}
+
+.distribution-table .legend-color-cell {
+    width: 40px;
+    padding: 10px 4px;
+    text-align: center;
+}
+
+.distribution-table .percentage-cell {
+    color: #00FF88;
+    font-weight: bold;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.distribution-table .name-cell {
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
+.distribution-table .value-cell {
+    color: #FFFFFF;
+    text-align: right;
+}
+
+.distribution-table .amount-cell {
+    color: #888;
+    text-align: right;
+    font-family: monospace;
+}
+
+.distribution-table .price-cell {
+    color: #888;
+    text-align: right;
+}
+
+@media (max-width: 768px) {
+    .distribution-wrapper {
+        flex-direction: column;
+    }
+    
+    #distribution-chart-container {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+    
+    .distribution-table {
+        font-size: 0.8em;
+    }
+    
+    .distribution-table th,
+    .distribution-table td {
+        padding: 8px 4px;
+    }
+}
+
+@media (max-width: 768px) {
+    .two-columns {
+        grid-template-columns: 1fr;
+    }
+    
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .slots-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    h1 {
+        font-size: 1.8em;
+    }
+}
+

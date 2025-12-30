@@ -1,0 +1,22 @@
+ * Serving Flask app 'dashboard_flask'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:8080
+ * Running on http://192.168.1.137:8080
+[33mPress CTRL+C to quit[0m
+127.0.0.1 - - [25/Dec/2025 08:33:18] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Dec/2025 08:33:30] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Dec/2025 08:33:49] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Dec/2025 08:34:07] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Dec/2025 08:34:25] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Dec/2025 08:34:43] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Dec/2025 08:35:01] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Dec/2025 08:35:20] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Dec/2025 08:35:38] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Dec/2025 08:35:59] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Dec/2025 08:36:17] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Dec/2025 08:36:37] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Dec/2025 08:36:54] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Dec/2025 08:37:15] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [25/Dec/2025 08:37:34] "GET / HTTP/1.1" 200 -

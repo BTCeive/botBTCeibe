@@ -1,0 +1,77 @@
+{
+  "timestamp": "2025-12-29T17:54:52.037837",
+  "radar_data": [
+    {
+      "currency": "XRP/BTC",
+      "rsi": null,
+      "ema200_distance": null,
+      "volume_status": null,
+      "triple_green": false,
+      "conditions_met": 0,
+      "missing_condition": null,
+      "heat_score": 0,
+      "buy_the_dip": false,
+      "heat_components": {
+        "rsi_raw": 0.0,
+        "ema_raw": 0.0,
+        "vol_raw": 0.0,
+        "bonus_raw": 0.0,
+        "rsi": 0,
+        "ema": 0,
+        "vol": 0,
+        "bonus": 0,
+        "total": 0
+      },
+      "zone": "muy_fria",
+      "last_update": "2025-12-29T17:54:44.109354",
+      "in_persecution": false
+    },
+    {
+      "currency": "XRP/ETH",
+      "rsi": null,
+      "ema200_distance": null,
+      "volume_status": null,
+      "triple_green": false,
+      "conditions_met": 0,
+      "missing_condition": null,
+      "heat_score": 0,
+      "buy_the_dip": false,
+      "heat_components": {
+        "rsi_raw": 0.0,
+        "ema_raw": 0.0,
+        "vol_raw": 0.0,
+        "bonus_raw": 0.0,
+        "rsi": 0,
+        "ema": 0,
+        "vol": 0,
+        "bonus": 0,
+        "total": 0
+      },
+      "zone": "muy_fria",
+      "last_update": "2025-12-29T17:54:47.045524",
+      "in_persecution": false
+    }
+  ],
+  "zones": {
+    "muy_caliente": {
+      "threshold": ">85",
+      "frequency": 15,
+      "color": "#00FF88"
+    },
+    "caliente": {
+      "threshold": "70-85",
+      "frequency": 15,
+      "color": "#00CC66"
+    },
+    "fria": {
+      "threshold": "40-69",
+      "frequency": 15,
+      "color": "#888888"
+    },
+    "muy_fria": {
+      "threshold": "<40",
+      "frequency": 15,
+      "color": "#444444"
+    }
+  }
+}

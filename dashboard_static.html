@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="30">
+    <title>botCeibe Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #0a0a0a; color: #e0e0e0; padding: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        h1 { color: #00ff88; margin-bottom: 10px; }
+        .timestamp { color: #888; margin-bottom: 20px; }
+        .section { background: #1a1a1a; padding: 20px; margin: 20px 0; border-radius: 8px; border: 1px solid #333; }
+        .section h2 { color: #00ff88; margin-bottom: 15px; }
+        .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .metric { background: #252525; padding: 15px; border-radius: 6px; border-left: 4px solid #00ff88; }
+        .metric-label { color: #aaa; font-size: 0.85em; margin-bottom: 5px; }
+        .metric-value { color: #00ff88; font-size: 1.8em; font-weight: bold; }
+        .status-critical { color: #ff4444; }
+        .status-warning { color: #ffaa00; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #333; }
+        th { background: #2a2a2a; color: #00ff88; }
+        tr:hover { background: #252525; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>botCeibe Dashboard</h1>
+        <p class="timestamp">Actualizado: 2025-12-25T21:36:24.383530</p>
+        
+        <div class="section">
+            <h2>Estado del Mercado</h2>
+            <div class="metrics">
+                <div class="metric">
+                    <div class="metric-label">Estado</div>
+                    <div class="metric-value">🟢 SEGURO</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">BTC 24h</div>
+                    <div class="metric-value">-0.42%</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Gas (BNB)</div>
+                    <div class="metric-value status-ok">8.64%</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Portfolio Total</div>
+                    <div class="metric-value">0.00€</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Balances Principales</h2>
+            <table>
+                <tr><th>Activo</th><th>Cantidad</th></tr>
+                <tr><td>XRP</td><td>54.40000000</td></tr>
+                <tr><td>EUR</td><td>7.46256000</td></tr>
+                <tr><td>BNB</td><td>0.01157420</td></tr>
+            </table>
+        </div>
+        
+        <div class="section">
+            <h2>Trades Activos</h2>
+            <p>No hay trades activos</p>
+        </div>
+        
+        <div class="section">
+            <h2>Radar (Top 15)</h2>
+            <table>
+                <tr><th>Par / Swap</th><th>Heat Score</th><th>Triang.</th></tr>
+                <tr><td>XRP → SOL</td><td>85</td><td>🔁</td></tr>
+                <tr><td>XRP → BNB</td><td>80</td><td></td></tr>
+                <tr><td>XRP → NEAR</td><td>80</td><td>🔁</td></tr>
+                <tr><td>XRP → MATIC</td><td>77</td><td>🔁</td></tr>
+                <tr><td>XRP → FET</td><td>76</td><td>🔁</td></tr>
+                <tr><td>XRP → LINK</td><td>75</td><td>🔁</td></tr>
+                <tr><td>XRP → USDC</td><td>74</td><td></td></tr>
+                <tr><td>XRP → AVAX</td><td>72</td><td>🔁</td></tr>
+                <tr><td>XRP → RNDR</td><td>71</td><td>🔁</td></tr>
+                <tr><td>XRP → DOT</td><td>69</td><td>🔁</td></tr>
+                <tr><td>XRP → BTC</td><td>68</td><td></td></tr>
+                <tr><td>XRP → APT</td><td>68</td><td>🔁</td></tr>
+                <tr><td>XRP → SUI</td><td>67</td><td>🔁</td></tr>
+                <tr><td>XRP → ADA</td><td>65</td><td>🔁</td></tr>
+                <tr><td>XRP → ETH</td><td>63</td><td></td></tr>
+            </table>
+            <p style="margin-top:10px;color:#aaa;font-size:0.9em;">Leyenda Heat: <strong>RSI 40%</strong> • <strong>EMA 30%</strong> • <strong>VOL 20%</strong> • <strong>BONUS 10%</strong></p>
+            <p style="margin-top:6px;color:#aaa;font-size:0.9em;">Gas target: 5.0% — Niveles: Pasivo <5% • Estratégico <2% • Emergencia <1%</p>
+        </div>
+    </div>
+</body>
+</html>

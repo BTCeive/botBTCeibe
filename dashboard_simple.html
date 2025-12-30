@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>botCeibe Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #1a1a1a; color: #fff; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { color: #00ff88; }
+        .section { background: #2a2a2a; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        .metric { display: inline-block; margin: 10px; padding: 15px; background: #333; border-radius: 5px; }
+        .metric-label { color: #aaa; font-size: 0.9em; }
+        .metric-value { color: #00ff88; font-size: 1.5em; font-weight: bold; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #444; }
+        th { background: #333; color: #00ff88; }
+        .status-ok { color: #00ff88; }
+        .status-warning { color: #ffaa00; }
+        .status-error { color: #ff4444; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 botCeibe Dashboard</h1>
+        <p>Última actualización: <span id="timestamp">Cargando...</span></p>
+        
+        <div class="section">
+            <h2>📊 Resumen General</h2>
+            <div id="summary">Cargando datos...</div>
+        </div>
+        
+        <div class="section">
+            <h2>💰 Portfolio</h2>
+            <div id="portfolio">Cargando...</div>
+        </div>
+        
+        <div class="section">
+            <h2>📈 Trades Activos</h2>
+            <div id="trades">Cargando...</div>
+        </div>
+        
+        <div class="section">
+            <h2>🔍 Radar</h2>
+            <div id="radar">Cargando...</div>
+        </div>
+        
+        <meta http-equiv="refresh" content="30">
+    </div>
+</body>
+</html>

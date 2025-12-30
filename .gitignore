@@ -1,0 +1,49 @@
+# Entornos virtuales
+venv/
+.venv/
+env/
+ENV/
+
+# Variables de entorno locales
+.env
+config/.env
+
+# Caché de Python
+__pycache__/
+*/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Logs y salidas temporales
+*.log
+*.out
+bitacora.txt
+bitacora.txt.*
+
+# Bases de datos / cachés / datos temporales
+data/
+shared/bot_data.db
+*.db
+*.sqlite
+*.sqlite3
+*.bak
+*.cache
+
+# Datos generados del bot
+shared/*.json
+*.jsonl
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# IDE / editor
+.idea/
+.vscode/
+
+# Dependencias y builds
+node_modules/
+dist/
+build/
+pip-wheel-metadata/

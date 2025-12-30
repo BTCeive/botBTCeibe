@@ -1,0 +1,14 @@
+## Reglas replicadas desde .gitignore para el motor de búsqueda interno
+venv/
+.venv/
+.env
+__pycache__/
+*.pyc
+*.log
+bitacora.txt
+data/
+shared/*.json
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>botCeibe Dashboard</title>
+    <link rel="stylesheet" href="/dashboard/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 botCeibe Dashboard</h1>
+        
+        <div id="loading" class="loading">Cargando datos...</div>
+        <div id="error" class="error" style="display: none;"></div>
+        
+        <div id="dashboard" style="display: none;">
+            <!-- Resumen General -->
+            <div class="section">
+                <h2>📊 Resumen General</h2>
+                <div class="metrics-grid" id="summary-metrics"></div>
+            </div>
+
+            <!-- Slots de Inversión -->
+            <div class="section">
+                <h2>📈 Slots de Inversión</h2>
+                <div class="slots-grid" id="slots-container"></div>
+            </div>
+
+            <!-- Historial y Distribución -->
+            <div class="two-columns">
+                <div class="section">
+                    <h2>📝 Historial de Eventos</h2>
+                    <div class="historial-box" id="historial-container">
+                        <div class="loading-small">Cargando historial...</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>💼 Distribución de Wallet</h2>
+                    <div id="distribution-container">
+                        <div class="loading-small">Cargando distribución...</div>
+                        <div class="distribution-wrapper">
+                            <div id="distribution-chart-container">
+                                <canvas id="distribution-chart"></canvas>
+                            </div>
+                            <div id="distribution-table-container"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Radar de Oportunidades -->
+            <div class="section">
+                <h2>📡 Radar de Oportunidades</h2>
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                    <div style="color:#888;font-size:0.95em;">Top radar</div>
+                    <button id="toggle-radar-all" style="background:#222;border:1px solid #333;color:#fff;padding:6px 10px;border-radius:6px;cursor:pointer;">Ver todos</button>
+                </div>
+                <div class="radar-list" id="radar-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section" id="dashboard-footer" style="margin-top:10px;">
+            <strong>Info Heat:</strong> RSI (40%) | EMA (30%) | VOL (20%) | Bonus (10%)
+        </div>
+    </div>
+
+    <script src="/dashboard/dashboard.js"></script>
+</body>
+</html>
+
