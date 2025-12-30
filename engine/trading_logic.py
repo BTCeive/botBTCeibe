@@ -3237,12 +3237,13 @@ Thumbs.db
     
     def _calculate_dynamic_stop_loss(self, entry_price: float, highest_price: float, initial_value: float, current_value_eur: float) -> float:
         """
-        Calcula el stop loss dinámico basado en escalones progresivos.
-        El stop loss nunca puede bajar, solo subir (principio de trinquete).
+        Calcula el stop loss dinámico con trailing stop del -0.50% respecto al máximo alcanzado.
+        Estrategia Gemini: Trailing Stop Loss -0.50% desde el máximo visto
         
         Lógica:
         - Stop Loss fijo al -1.5% cuando PNL <= -1.5%
-        - Trailing Stop se activa al +0.6% con step de 0.5%
+        - Trailing Stop -0.50% se activa cuando se alcanza +3.0% de ganancia
+        - El trailing nunca baja, solo sube (principio de trinquete)
         
         Args:
             entry_price: Precio de entrada del trade
@@ -3258,24 +3259,22 @@ Thumbs.db
         
         pnl_percent = ((current_value_eur - initial_value) / initial_value) * 100
         
+        # Obtener trailing stop loss percent de la estrategia
+        trailing_stop_pct = self.strategy.get("trading", {}).get("trailing_stop_loss_percent", 0.50)
+        
         # Stop Loss fijo al -1.5% cuando PNL <= -1.5%
         if pnl_percent <= -1.5:
             return entry_price * 0.985  # Stop Loss fijo al -1.5%
         
-        # Trailing Stop se activa al +0.6% con step de 0.5%
-        if pnl_percent > 0.6:
-            # Calcular trailing stop basado en el máximo visto
-            # Step de 0.5%: cada 0.5% de ganancia, el trailing se ajusta
-            # Ejemplo: +0.6% -> trailing 0.5%, +1.1% -> trailing 1.0%, etc.
-            trailing_percent = 0.5 + ((pnl_percent - 0.6) // 0.5) * 0.5
-            # Limitar el trailing máximo a 1.0% para evitar ser demasiado agresivo
-            trailing_percent = min(trailing_percent, 1.0)
-            
-            # Calcular stop loss basado en el máximo visto
-            stop_loss_price = highest_price * (1 - trailing_percent / 100.0)
+        # Trailing Stop -0.50% se activa al +3.0% de ganancia
+        activation_threshold = self.strategy.get("trading", {}).get("trailing_activation", 3.0)
+        if pnl_percent > activation_threshold:
+            # Trailing Stop: -0.50% respecto al máximo visto
+            # El stop loss nunca puede bajar (trinquete)
+            stop_loss_price = highest_price * (1 - trailing_stop_pct / 100.0)
             return stop_loss_price
         else:
-            # PNL entre -1.5% y +0.6%: Sin trailing stop, usar stop loss inicial al -1.5%
+            # PNL entre -1.5% y +3.0%: Sin trailing stop, usar stop loss inicial al -1.5%
             return entry_price * 0.985  # Stop Loss fijo al -1.5%
     
     async def _check_market_general_trend(self) -> bool:

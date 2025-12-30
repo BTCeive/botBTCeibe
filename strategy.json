@@ -5,6 +5,7 @@
     "min_profit_step": 2.5,
     "trailing_activation": 3.0,
     "trailing_drop": 0.5,
+    "trailing_stop_loss_percent": 0.50,
     "safe_exit_threshold": 1.5,
     "safe_exit_stop_loss": 0.5,
     "jump_heat_score_difference": 15
@@ -13,12 +14,15 @@
     "jump_heat_score_difference": "⚠️ CRÍTICO: Umbral de salto entre monedas. Si es muy bajo (15), el bot saltará frecuentemente (overtrading). Si ves muchos saltos, aumentar a 25-30. Valor actual: 15"
   },
   "indicators": {
-    "rsi_compra": 45,
+    "rsi_buy_level": 32,
+    "rsi_compra": 32,
     "rsi_venta": 70,
     "rsi_radar_threshold": 48,
+    "ema_period": 20,
     "ema200_period": 200,
     "ema200_traditional_threshold": -2.0,
     "ema200_buy_dip_threshold": 0.0,
+    "volume_factor": 1.15,
     "volume_threshold": 1.5
   },
   "risk": {
